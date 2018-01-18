@@ -27,6 +27,7 @@ from __future__ import absolute_import, unicode_literals
 
 import json
 
+from django.conf import settings
 from django.forms import widgets
 from django.utils import translation
 from wagtail.utils.widgets import WidgetWithScript
@@ -63,6 +64,7 @@ class TinyMCERichTextArea(WidgetWithScript, widgets.Textarea):
 
     def __init__(self, attrs=None, **kwargs):
         super(TinyMCERichTextArea, self).__init__(attrs)
+        translation.trans_real.activate(settings.LANGUAGE_CODE)
         self.kwargs = self.getDefaultArgs()
         if kwargs is not None:
             self.kwargs.update(kwargs)
